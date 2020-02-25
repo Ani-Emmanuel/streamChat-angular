@@ -23,16 +23,15 @@ export class AppComponent {
   loggedinUser: User;
 
   constructor(private httpService: ServiceService) {
-    this.chat = new StreamChat(this.API_KEY);
   }
   title = "livesupport";
-
+  
   ngOnInit() {
     if (localStorage.getItem("userToken") !== null) {
       this.token = JSON.parse(localStorage.getItem("userToken"));
     }
   }
-
+  
   openForm() {
     if (localStorage.getItem("userToken") === null) {
       document.getElementById("myForm").style.display = "none";
@@ -42,18 +41,19 @@ export class AppComponent {
       document.getElementById("signinForm").style.display = "none";
     }
   }
-
+  
   closeForm() {
     document.getElementById("myForm").style.display = "none";
   }
-
+  
   signUp() {
+    this.chat = new StreamChat("wf946y4ahq5j");
     this.data = { username: this.userName };
     this.httpService.userAuthentication(this.data).subscribe((data: any) => {
       if (data) {
         localStorage.setItem("userToken", JSON.stringify(data.token));
-        this.chatSupport(this.API_KEY);
         this.openForm();
+        this.chatSupport("wf946y4ahq5j");
       }
     });
   }
@@ -73,16 +73,16 @@ export class AppComponent {
     });
 
     this.state = await this.channel.watch();
+    console.log(this.state);
     this.newmessage = this.state.messages;
     console.log(this.newmessage);
     console.log(this.loggedinUser.me.id);
 
     this.channel.on("message.new", event => {
-      this.newmessage = [...this.newmessage, event.message.text];
+      this.newmessage = [...this.newmessage, event.message];
       console.log(this.newmessage);
     });
   }
-
 
   async sendingMessage() {
     const test = this.message;
