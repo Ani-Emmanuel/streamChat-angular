@@ -25,32 +25,34 @@
       <h4>client support</h4>
     </div>
     <form (ngSubmit)="sendingMessage()" class="form-container">
-      <div id="screen" *ngFor="let messages of newmessage">
-        <div
-          *ngIf="
-            message.user.id !== loggedinUser.me.id;
-            then msg_cotainer;
-            else msg_cotainer_send
-          "
-        ></div>
-        <ng-template #msg_cotainer_send>
-          <div class="d-flex justify-content-end mb-4">
-            <div class="msg_cotainer_send">
-              {{ messages.user.id }}
-              {{ messages.text }}
+      <div id="screen">
+        <div *ngFor="let messages of newmessage">
+          <!-- <div
+            *ngIf="
+              messages.user.id !== loggedinUser.me.id;
+              then msg_cotainer;
+              else msg_cotainer_send
+            "
+          ></div> -->
+          <!-- <ng-template #msg_cotainer_send> -->
+            <div class="d-flex justify-content-end mb-4">
+              <div class="msg_cotainer_send">
+                {{ messages.user.id }}
+                {{ messages.text }}
+              </div>
+              <div class="img_cont_msg"></div>
             </div>
-            <div class="img_cont_msg"></div>
-          </div>
-        </ng-template>
-        <ng-template #msg_cotainer>
-          <div class="d-flex justify-content-start mb-4">
-            <div class="img_cont_msg"></div>
-            <div class="msg_cotainer">
-              {{ messages.user.id }}
-              {{ messages.text }}
+          <!-- </ng-template> -->
+          <!-- <ng-template #msg_cotainer> -->
+            <div class="d-flex justify-content-start mb-4">
+              <div class="img_cont_msg"></div>
+              <div class="msg_cotainer">
+                {{ messages.user.id }}
+                {{ messages.text }}
+              </div>
             </div>
-          </div>
-        </ng-template>
+          <!-- </ng-template> -->
+        </div>
       </div>
       <textarea
         placeholder="Type message.."

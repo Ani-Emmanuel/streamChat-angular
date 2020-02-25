@@ -14,7 +14,7 @@ export class AppComponent {
   data: any;
   token: any;
   userName: string = "";
-  API_KEY: string = "wf946y4ahq5j";
+  API_KEY: any = "wf946y4ahq5j";
   message: string = "";
   newmessage: Message[] = [];
   channel: any;
@@ -52,8 +52,8 @@ export class AppComponent {
     this.httpService.userAuthentication(this.data).subscribe((data: any) => {
       if (data) {
         localStorage.setItem("userToken", JSON.stringify(data.token));
-        this.openForm();
         this.chatSupport(this.API_KEY);
+        this.openForm();
       }
     });
   }
@@ -74,12 +74,15 @@ export class AppComponent {
 
     this.state = await this.channel.watch();
     this.newmessage = this.state.messages;
+    console.log(this.newmessage);
+    console.log(this.loggedinUser.me.id);
 
     this.channel.on("message.new", event => {
       this.newmessage = [...this.newmessage, event.message.text];
       console.log(this.newmessage);
     });
   }
+
 
   async sendingMessage() {
     const test = this.message;

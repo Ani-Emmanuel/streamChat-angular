@@ -85,6 +85,8 @@ body {
   background-color: #78e08f;
   padding: 10px;
   position: relative;
+  width: 200px;
+  white-space: pre-line;
 }
 
 .msg_cotainer {
@@ -95,6 +97,8 @@ body {
   background-color: #82ccdd;
   padding: 10px;
   position: relative;
+  width: 200px;
+  white-space: pre-line;
 }
 
 .header {
@@ -128,7 +132,9 @@ h4 {
 }
 
 #screen {
-  overflow: hidden;
-	margin: 26px 0 26px;
+  overflow-y: scroll;
+  margin: 26px 0 26px;
   white-space: nowrap;
+  position: relative;
+  height: 200px;
 }
